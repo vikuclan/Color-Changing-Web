@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+    <h2>Select Start to Change Color</h2>
+    <input type="button" value="Start" id="Start">
+    <input type="button" value="Stop" id="Stop">
+    </div>
+    <script>
+        const randomColor=function(){
+            color="#"
+            code="0123456789ABCDEF"
+            for (let i = 0; i <6; i++) {
+                color+=code[Math.floor(Math.random()*16)]
+            }
+            return color;
+        }
+        let stopSetInterval;
+        const startEvent=function(){
+            stopSetInterval=setInterval(colorChange,1000)
+            function colorChange() {
+                document.body.style.backgroundColor=randomColor()
+                // console.log("selected")
+            }
+        }
+        document.querySelector('#Start').addEventListener('click',startEvent)
+        const stopEvent=()=>{
+
+            clearInterval(stopSetInterval)
+        }
+        document.querySelector('#Stop').addEventListener('click',stopEvent)
+        
+    </script>
+</body>
+</html>
